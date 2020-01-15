@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TicketsDemo.Data.Repositories;
+using TicketsDemo.Domain.DefaultImplementations;
 using TicketsDemo.Domain.Interfaces;
 using TicketsDemo.Models;
 
@@ -16,20 +17,20 @@ namespace TicketsDemo.Controllers
         private IReservationRepository _reservationRepo;
         private IReservationService _resServ;
         private ITicketService _tickServ;
-        private IPriceCalculationStrategy _priceCalc;
+        private IPriceCalculationStrategy _priceCalculationStrategy;
         private ITrainRepository _trainRepo;
 
         public RunController(ITicketRepository tick, IRunRepository run, 
             IReservationService resServ,
             ITicketService tickServ,
-            IPriceCalculationStrategy priceCalcStrategy,
+            IPriceCalculationStrategy priceCalculationStrategy,
             IReservationRepository reservationRepo,
             ITrainRepository trainRepo) {
             _tickRepo = tick;
             _runRepo = run;
             _resServ = resServ;
             _tickServ = tickServ;
-            _priceCalc = priceCalcStrategy;
+            _priceCalculationStrategy = priceCalculationStrategy;
             _reservationRepo = reservationRepo;
             _trainRepo = trainRepo;
         }
@@ -52,12 +53,11 @@ namespace TicketsDemo.Controllers
             var place = _runRepo.GetPlaceInRun(placeId);
 
             var reservation = _resServ.Reserve(place);
-
             var model = new ReservationViewModel()
             {
                 Reservation = reservation,
                 PlaceInRun = place,
-                PriceComponents = _priceCalc.CalculatePrice(place),
+                PriceComponents = _priceCalculationStrategy.CalculatePrice(place),
                 Date = place.Run.Date,
                 Train = _trainRepo.GetTrainDetails(place.Run.TrainId),
             };

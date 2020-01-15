@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\HolidayAggregate\Holiday.cs" />
     <Compile Include="Entities\TrainAggregate\Carriage.cs" />
     <Compile Include="Entities\TrainAggregate\Place.cs" />
     <Compile Include="Entities\RunAggregate\PlaceInRun.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="Entities\TicketAggregate\Ticket.cs" />
     <Compile Include="Entities\TrainAggregate\Train.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IHolidayRepository.cs" />
     <Compile Include="Repositories\IReservationRepository.cs" />
     <Compile Include="Repositories\IRunRepository.cs" />
     <Compile Include="Repositories\ITicketRepository.cs" />

@@ -6,6 +6,7 @@ namespace TicketsDemo.EF.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
     using TicketsDemo.Data.Entities;
+    using TicketsDemo.Data.Entities.HolidayAggregate;
 
     internal sealed class Configuration : DbMigrationsConfiguration<TicketsDemo.EF.TicketsContext>
     {
@@ -93,6 +94,34 @@ namespace TicketsDemo.EF.Migrations
               }
 
             );
+
+            context.Holidays.AddOrUpdate(
+                h=>h.Id,
+                new Holiday 
+                { 
+                    Date = new DateTime(2020, 1, 1)
+                },
+                new Holiday
+                {
+                    Date = new DateTime(2020, 1, 7)
+                },
+                new Holiday
+                {
+                    Date = new DateTime(2020, 1, 14)
+                },
+                new Holiday
+                {
+                    Date = new DateTime(2020, 3, 8)
+                },
+                new Holiday
+                {
+                    Date = new DateTime(2020, 4, 19)
+                },
+                new Holiday
+                {
+                    Date = new DateTime(2020, 5, 1)
+                }
+                );
             
         }
     }

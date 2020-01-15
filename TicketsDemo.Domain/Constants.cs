@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TicketsDemo.CSV
+namespace TicketsDemo.Domain
 {
-    public interface ICSVReader
+    public static class Constants
     {
-        List<T> ReadFile<T>(string file); 
+        public const decimal HolidayPriceMultiplier = 0.1m;
     }
 }

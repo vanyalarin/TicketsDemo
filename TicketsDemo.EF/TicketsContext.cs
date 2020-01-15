@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketsDemo.Data.Entities;
+using TicketsDemo.Data.Entities.HolidayAggregate;
 
 namespace TicketsDemo.EF
 {
@@ -19,6 +20,8 @@ namespace TicketsDemo.EF
         public DbSet<PlaceInRun> PlacesInRuns {get;set;}
         public DbSet<Reservation> Reservations {get;set;}
         public DbSet<Ticket> Tickets {get;set; }
+
+        public DbSet<Holiday> Holidays { get; set; }
 
         public DbSet<PriceComponent> PriceComponents { get; set; }
 
@@ -35,6 +38,8 @@ namespace TicketsDemo.EF
             modelBuilder.Entity<Ticket>().HasMany(x => x.PriceComponents).WithRequired(x => x.Ticket);
 
             modelBuilder.Entity<Reservation>();
+
+            modelBuilder.Entity<Holiday>();
         } 
 
     }
